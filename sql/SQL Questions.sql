@@ -11,4 +11,14 @@ SELECT Name FROM Customers WHERE ReferredBy NOT IN (2);
 SELECT Name FROM Customers WHERE ReferredBy <> 2;
 SELECT Name FROM Customers WHERE ReferredBy = NULL OR ReferredBy <> 2;
 ---Explanation
+---SELECT Name FROM Customers WHERE ReferredBy IS NULL OR ReferredBy  NOT IN (2);
+---SELECT Name FROM Customers WHERE ReferredBy IS NULL OR ReferredBy  <> 2;
+---SQL Server uses three-valued logic - TRUE, FALSE and UNKNOWN. Anything compared to NULL evaluates to the third value in three-valued logic: UNKNOWN.
+---The third query will also fail as ANYTHING (even NULL) compared to NULL will evalute to UNKNOWN.
+---SQL provides the IS NULL and IS NOT NULL operators to specifically check for NULL.
+---
+
+---Problem 3 -
+
+---Explanation
 ---
