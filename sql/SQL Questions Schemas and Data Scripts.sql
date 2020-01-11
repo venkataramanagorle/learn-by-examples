@@ -34,12 +34,12 @@ UNION ALL   SELECT 4, 'triathalon',  null FROM dual;
 
 CREATE TABLE Customers(
     id NUMBER,
-    NAME VARCHAR(100),
-    ReferredBy NUMBER
+    name VARCHAR(100),
+    referred_by NUMBER
 );
 INSERT INTO Customers
             SELECT 1, 'John Doe',     null FROM dual
-UNION ALL   SELECT 2, 'Jane SMith',   null FROM dual
+UNION ALL   SELECT 2, 'Jane Smith',   null FROM dual
 UNION ALL   SELECT 3, 'Anne Jenkins', 2    FROM dual
 UNION ALL   SELECT 4, 'Eric Branford',null FROM dual
 UNION ALL   SELECT 5, 'Pat Richards', 1    FROM dual
@@ -48,8 +48,8 @@ UNION ALL   SELECT 6, 'Alice Barnes', 2    FROM dual;
 
 CREATE TABLE Invoices(
   Id NUMBER,
-  BillingDate DATE,
-  CustoemrId NUMBER
+  billing_date DATE,
+  custoemr_id NUMBER
 );
 
 INSERT INTO Invoices
@@ -84,15 +84,16 @@ UNION ALL SELECT 1 FROM dual;
 
 CREATE TABLE Employees(
   id NUMBER,
-  name VARCHAR(100),
+  emp_name VARCHAR(100),
   salary NUMBER
 );
 
 INSERT INTO Employees
           SELECT 1, 'Bernadette Rostenkowski', 100000 FROM dual
-UNION ALL SELECT 2, 'Leonard Hofstadter', 120000      FROM dual
-UNION ALL SELECT 3, 'Sheldon Cooper', 200000          FROM dual
-UNION ALL SELECT 4, 'Raj Kuthrapally', 90000          FROM dual
-UNION ALL SELECT 5, 'Penny Hofstadter', 150000        FROM dual
-UNION ALL SELECT 6, 'Howard Wolowitz', 135000         FROM dual;
+UNION ALL SELECT 2, 'Leonard Hofstadter',      120000 FROM dual
+UNION ALL SELECT 3, 'Sheldon Cooper',          200000 FROM dual
+UNION ALL SELECT 4, 'Raj Kuthrapally',         90000  FROM dual
+UNION ALL SELECT 5, 'Penny Hofstadter',        150000 FROM dual
+UNION ALL SELECT 6, 'Howard Wolowitz',         135000 FROM dual
+UNION ALL SELECT 2, 'Jane Smith',              52000  FROM dual;
 --------------------------------------------------------------------------------

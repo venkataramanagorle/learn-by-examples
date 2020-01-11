@@ -24,12 +24,12 @@ SELECT * FROM runners where runners.id NOT IN (SELECT winner_id FROM races where
 
 ---Problem 2
 ---What will be the result of the following Queries? What is a better way to write it
-SELECT Name FROM Customers WHERE ReferredBy NOT IN (2);
-SELECT Name FROM Customers WHERE ReferredBy <> 2;
-SELECT Name FROM Customers WHERE ReferredBy = NULL OR ReferredBy <> 2;/
+SELECT Name FROM Customers WHERE referred_by NOT IN (2);
+SELECT Name FROM Customers WHERE referred_by <> 2;
+SELECT Name FROM Customers WHERE referred_by = NULL OR referred_by <> 2;
 ---Explanation
-SELECT Name FROM Customers WHERE ReferredBy IS NULL OR ReferredBy  NOT IN (2);/
----SELECT Name FROM Customers WHERE ReferredBy IS NULL OR ReferredBy  <> 2;
+SELECT Name FROM Customers WHERE referred_by IS NULL OR referred_by  NOT IN (2);
+SELECT Name FROM Customers WHERE referred_by IS NULL OR referred_by  <> 2;
 ---SQL Server uses three-valued logic - TRUE, FALSE and UNKNOWN. Anything compared to NULL evaluates to the third value in three-valued logic: UNKNOWN.
 ---The third query will also fail as ANYTHING (even NULL) compared to NULL will evalute to UNKNOWN.
 ---SQL provides the IS NULL and IS NOT NULL operators to specifically check for NULL.
@@ -41,16 +41,16 @@ SELECT Name FROM Customers WHERE ReferredBy IS NULL OR ReferredBy  NOT IN (2);/
 ---Explanation
 SELECT
   i.id as Invoice_Id, 
-  i.BillingDate as Billing_Date,
+  i.billing_date as Billing_Date,
   c1.name as Customer_Name,
-  c2.name as Reffered_By
+  c2.name as Refered_By
 FROM
   Invoices i
 INNER JOIN
   Customers c1 ON c1.id=i.id
 LEFT JOIN
-  Customers c2 ON c1.ReferredBy=c2.id
-ORDER BY i.BillingDate ASC;
+  Customers c2 ON c1.referred_by=c2.id
+ORDER BY i.billing_date ASC;
 ---Same table with different alias can be joined multiple times as per the requirement
 ---INNER JOIN on the first JOIN condition to retrive only those invoices which have a customer
 ---LEFT  JOIN on the first JOIN condition to retrive all invoices irrespective of customer present or not
@@ -110,10 +110,13 @@ SELECT * FROM (
 ---
 
 ---Problem 8
----Write a query usning UNION ALL to return names from Customers and Employees tables and use WHERE clause to eliminate duplicates
-
+---Write a query to return distinct names from Customers and Employees tables.
+SELECT c.name as name FROM  Customers c 
+    UNION
+SELECT e.emp_name as name FROM Employees e;
 ---Explanation
 
+---
 
 
 
