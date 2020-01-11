@@ -115,7 +115,8 @@ SELECT c.name as name FROM  Customers c
     UNION
 SELECT e.emp_name as name FROM Employees e;
 ---Explanation
-
+---We can UNION tables that have different structure using alias
+---Use UNION to remove duplicates
 ---
 
 

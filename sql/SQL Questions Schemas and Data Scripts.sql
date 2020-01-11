@@ -97,3 +97,29 @@ UNION ALL SELECT 5, 'Penny Hofstadter',        150000 FROM dual
 UNION ALL SELECT 6, 'Howard Wolowitz',         135000 FROM dual
 UNION ALL SELECT 2, 'Jane Smith',              52000  FROM dual;
 --------------------------------------------------------------------------------
+
+CREATE TABLE Training_Details(
+    emp_training_id NUMBER,
+    emp_id NUMBER,
+    training_id NUMBER,
+    training_date DATE
+);
+
+INSERT INTO Training_Details
+          SELECT  1, 1, 1, TO_DATE('2015-08-02','yyyy-mm-dd') FROM dual
+UNION ALL SELECT  2, 2, 1, TO_DATE('2015-08-03','yyyy-mm-dd') FROM dual
+UNION ALL SELECT  3, 3, 2, TO_DATE('2015-08-02','yyyy-mm-dd') FROM dual
+UNION ALL SELECT  4, 4, 2, TO_DATE('2015-08-04','yyyy-mm-dd') FROM dual
+UNION ALL SELECT  5, 2, 2, TO_DATE('2015-08-03','yyyy-mm-dd') FROM dual
+UNION ALL SELECT  6, 1, 1, TO_DATE('2015-08-02','yyyy-mm-dd') FROM dual
+UNION ALL SELECT  7, 3, 2, TO_DATE('2015-08-04','yyyy-mm-dd') FROM dual
+UNION ALL SELECT  8, 4, 3, TO_DATE('2015-08-03','yyyy-mm-dd') FROM dual
+UNION ALL SELECT  9, 1, 4, TO_DATE('2015-08-03','yyyy-mm-dd') FROM dual
+UNION ALL SELECT 10, 3, 1, TO_DATE('2015-08-02','yyyy-mm-dd') FROM dual
+UNION ALL SELECT 11, 4, 2, TO_DATE('2015-08-04','yyyy-mm-dd') FROM dual
+UNION ALL SELECT 12, 3, 2, TO_DATE('2015-08-02','yyyy-mm-dd') FROM dual
+UNION ALL SELECT 13, 1, 1, TO_DATE('2015-08-02','yyyy-mm-dd') FROM dual
+UNION ALL SELECT 14, 4, 3, TO_DATE('2015-08-03','yyyy-mm-dd') FROM dual;
+--------------------------------------------------------------------------------
+
+
