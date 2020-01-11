@@ -36,7 +36,7 @@ SELECT Name FROM Customers WHERE ReferredBy IS NULL OR ReferredBy  NOT IN (2);/
 ---
 
 ---Problem 3
----From the Invoices table show the Invoice ID, the billing date, the customer’s name, and the name of the customer who referred that customer (if any). 
+---From the Invoices table show the Invoice ID, the billing date, the customerâ€™s name, and the name of the customer who referred that customer (if any). 
 ---The list should be ordered by billing date
 ---Explanation
 SELECT
@@ -113,8 +113,6 @@ SELECT * FROM (
 ---Write a query usning UNION ALL to return names from Customers and Employees tables and use WHERE clause to eliminate duplicates
 
 ---Explanation
-
----
 
 
 
