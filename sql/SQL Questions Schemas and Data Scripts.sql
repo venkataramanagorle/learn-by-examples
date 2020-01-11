@@ -92,7 +92,7 @@ INSERT INTO Employees
           SELECT 1, 'Bernadette Rostenkowski', 100000 FROM dual
 UNION ALL SELECT 2, 'Leonard Hofstadter', 120000      FROM dual
 UNION ALL SELECT 3, 'Sheldon Cooper', 200000          FROM dual
-UNION ALL SELECT 4, 'Raj Kuthrapally', 100000         FROM dual
+UNION ALL SELECT 4, 'Raj Kuthrapally', 90000          FROM dual
 UNION ALL SELECT 5, 'Penny Hofstadter', 150000        FROM dual
 UNION ALL SELECT 6, 'Howard Wolowitz', 135000         FROM dual;
 --------------------------------------------------------------------------------

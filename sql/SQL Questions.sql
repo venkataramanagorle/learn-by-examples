@@ -15,20 +15,20 @@
 
 ---Problem 1
 ---What will the query return? Correct it.
-SELECT * FROM runners where runners.id NOT IN (SELECT winner_id FROM races);
+SELECT * FROM runners where runners.id NOT IN (SELECT winner_id FROM races); /
 ---Explanation
-SELECT * FROM runners where runners.id NOT IN (SELECT winner_id FROM races where winner_id IS NOT NULL);
+SELECT * FROM runners where runners.id NOT IN (SELECT winner_id FROM races where winner_id IS NOT NULL); /
 ---NOT IN (NULL) evalutes to UNKNOWN with default ANSI_NULLS ON setting
 ---ANSI_NULLS should not be set to OFF - Bad Practise and will lead to other problems
 ---
 
 ---Problem 2
 ---What will be the result of the following Queries? What is a better way to write it
-SELECT Name FROM Customers WHERE ReferredBy NOT IN (2);
-SELECT Name FROM Customers WHERE ReferredBy <> 2;
-SELECT Name FROM Customers WHERE ReferredBy = NULL OR ReferredBy <> 2;
+SELECT Name FROM Customers WHERE ReferredBy NOT IN (2); /
+SELECT Name FROM Customers WHERE ReferredBy <> 2; /
+SELECT Name FROM Customers WHERE ReferredBy = NULL OR ReferredBy <> 2;/
 ---Explanation
-SELECT Name FROM Customers WHERE ReferredBy IS NULL OR ReferredBy  NOT IN (2);
+SELECT Name FROM Customers WHERE ReferredBy IS NULL OR ReferredBy  NOT IN (2);/
 ---SELECT Name FROM Customers WHERE ReferredBy IS NULL OR ReferredBy  <> 2;
 ---SQL Server uses three-valued logic - TRUE, FALSE and UNKNOWN. Anything compared to NULL evaluates to the third value in three-valued logic: UNKNOWN.
 ---The third query will also fail as ANYTHING (even NULL) compared to NULL will evalute to UNKNOWN.
@@ -50,7 +50,7 @@ INNER JOIN
   Customers c1 ON c1.id=i.id
 LEFT JOIN
   Customers c2 ON c1.ReferredBy=c2.id
-ORDER BY i.BillingDate ASC;
+ORDER BY i.BillingDate ASC; /
 ---Same table with different alias can be joined multiple times as per the requirement
 ---INNER JOIN on the first JOIN condition to retrive only those invoices which have a customer
 ---LEFT  JOIN on the first JOIN condition to retrive all invoices irrespective of customer present or not
@@ -58,9 +58,9 @@ ORDER BY i.BillingDate ASC;
 
 ---Problem 4
 ---How many rows will be displayed in the following SQL query
-SELECT * FROM Invoices,Customers;
+SELECT * FROM Invoices,Customers; /
 ---Explanation
-SELECT (SELECT  COUNT(*) from Invoices) * (SELECT COUNT(*) FROM Customers) as Total_Rows FROM dual;
+SELECT (SELECT  COUNT(*) from Invoices) * (SELECT COUNT(*) FROM Customers) as Total_Rows FROM dual; /
 ---The query will return a CARTESIAN PRODUCT or CROSS JOIN when WHERE clause is ommited
 ---
 
@@ -73,7 +73,7 @@ FROM
 LEFT JOIN
   Customers c ON i.id=c.id
 WHERE
-  c.id IS NULL;
+  c.id IS NULL; /
 ---Explanation
 ---We can have WHERE conditions on the joined columns. This way we can filter based on the joined tables
 ---
@@ -87,19 +87,34 @@ SELECT
   END 
   as updated_val 
 FROM 
-  Binary_Values;
+  Binary_Values; /
 ---Explanation
 ---Do not forget END keyword for case statements
 ---
 
 ---Problem 7
----Write SQL query to find the 5th highest employee salary from the Employees table
-SELECT * FROM Employees ORDER BY salary DESC;
+---Write SQL query to find the 4th highest employee salary from the Employees table
+SELECT * FROM (
+    SELECT * FROM (
+        SELECT * FROM Employees ORDER BY salary DESC
+    )  WHERE ROWNUM <= 4 ORDER BY salary ASC
+) WHERE ROWNUM = 1; /
+---Explanation
+---First we select all the employees and order by salary descending.
+--- Then we get the top 4 from the sorted using WHERE ROWNUM <= 4 and order by salary ascending.
+---Then we select ROWNUM = 1 to get desired employee
+---This complex procedure is required in Oracle as it does not have offset and limit or top concepts found in other databases.
+---ROWNUM is only useful for comparing = 1, < something or <= something. Eg. ROWNUM = 3 will not work.
+---ROWNUM are assigned temporarily and sequentially to the rows that are fetched and returned. If the row is not returned the assigned value is tossed away.
+--- https://stackoverflow.com/a/9679099
+---
+
+---Problem 8
+---Write a query usning UNION ALL to return names from Customers and Employees tables and use WHERE clause to eliminate duplicates
+
 ---Explanation
 
 ---
-
-
 
 
 
